@@ -8,7 +8,7 @@ C and C++ tutorials and demos for [CodeSolid.com](https://codesolid.com).
 
 * [gcc_with_cmake](./gcc_with_cmake/) -- Dockerfile, bash script, and instructions to build a container containing gcc w/ CMake built from source.
 
-[gcc_cmake_tutorial](./gcc_cmake_tutorial/) -- Multi-stage build that adds gcc to cmake as in [gcc_with_cmake](./gcc_with_cmake/), then gets the source for the corresponding CMake tutorial into /source.
+* [gcc_cmake_tutorial](./gcc_cmake_tutorial/) -- Multi-stage build that adds gcc to cmake as in [gcc_with_cmake](./gcc_with_cmake/), then gets the source for the corresponding CMake tutorial into /source.
 
 ## Planned / In Progress
 
