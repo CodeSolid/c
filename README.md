@@ -10,7 +10,7 @@ C and C++ tutorials and demos for [CodeSolid.com](https://codesolid.com).
 
 * [gcc_cmake_tutorial](./gcc_cmake_tutorial/) -- Multi-stage build that adds gcc to cmake as in [gcc_with_cmake](./gcc_with_cmake/), then gets the source for the corresponding CMake tutorial into /source.
 
-## Planned / In Progress
+## Related CodeSolid articles
 
-* Article for debugging remotely into tutorial -- encompasses work so far, and how to use gcc_cmake_tutorial with the "Dev Containers" VS Code plugin.  Perhaps more to do on gcc_cmake_tutorial in conjunction with this.
+The gcc_with_cmake and gcc_cmake_tutorial source is discussed in [Running the CMake Tutorial in a VS Code Dev Container](https://codesolid.com/running-the-cmake-tutorial-in-a-vs-code-dev-container/).
 

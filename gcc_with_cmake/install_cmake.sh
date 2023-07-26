@@ -4,6 +4,7 @@
 
 CMAKE_VERSION="3.27.0"
 
+# Skip if already installed.
 if ! command -v cmake &> /dev/null
 then
     mkdir /cmake-source

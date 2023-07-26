@@ -6,8 +6,6 @@ To run the gcc docker image, we can use the following command:
 
 This maps the current directory (on the host) to the /source directory (in the container), and sets it as the working directory.
 
-[JCL To do show all steps in VS code terminal].
-
 We can then create and build a C file straightforwardly. For example, given the file, [/c_hi_docker.c](./c_hi_docker.c), we can build and run it in our running container with the following commands:
 
 ```
