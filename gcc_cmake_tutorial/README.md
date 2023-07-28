@@ -1,17 +1,17 @@
 # A Docker container with CMake and the tutorial installed
 
-
-```
 # Build the container
 
-I have pushed this container tod DockerHub using
+I have pushed this container to DockerHub using
 the tag "codesolid/gcc_cmake_tutorial", so you don't really need to build it.
 
 Note, building CMake from source takes a few minutes, so please be patient.
 
 ```
-docker build -t codesolid/gcc_cmake_tutorial . 
+docker buildx create --use --name larger_log --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=50000000
 
+docker buildx build  --progress plain -t codesolid/gcc_cmake_tutorial .
+```
 
 # Create a persistent volume (Do once)
 

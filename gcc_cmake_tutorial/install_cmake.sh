@@ -3,11 +3,12 @@
 # Installs CMake
 
 if [ $# -eq 0 ]
-  then
+then
     echo "No arguments supplied"
+    exit 0
 fi
 
-CMAKE_VERSION="3.27.0"
+CMAKE_VERSION="$1"
 
 if ! command -v cmake &> /dev/null
 then
