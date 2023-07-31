@@ -8,33 +8,35 @@ project(Tutorial VERSION 1.0)
 #   Hint: use add_library() with the INTERFACE signature
 # * Add compiler feature cxx_std_11 to tutorial_compiler_flags
 #   Hint: Use target_compile_features()
+# Done see below
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+# set(CMAKE_CXX_STANDARD 11)
+# set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+add_library(tutorial_compiler_flags INTERFACE)
+target_compile_features(tutorial_compiler_flags INTERFACE cxx_std_11)
 
 # configure a header file to pass some of the CMake settings
 # to the source code
 configure_file(TutorialConfig.h.in TutorialConfig.h)
 
-# TODO 2: Remove EXTRA_INCLUDES list
+# TODO 2: Remove EXTRA_INCLUDES list (DONE)
 
 # add the MathFunctions library
 add_subdirectory(MathFunctions)
-list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
 
 # add the executable
 add_executable(Tutorial tutorial.cxx)
 
 # TODO 5: Link Tutorial to tutorial_compiler_flags
+target_link_libraries(Tutorial PUBLIC MathFunctions tutorial_compiler_flags)
 
-target_link_libraries(Tutorial PUBLIC MathFunctions)
-
-# TODO 3: Remove use of EXTRA_INCLUDES
+# TODO 3: Remove use of EXTRA_INCLUDES (DONE)
 
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
 target_include_directories(Tutorial PUBLIC
                            "${PROJECT_BINARY_DIR}"
-                           ${EXTRA_INCLUDES}
                            )
+
