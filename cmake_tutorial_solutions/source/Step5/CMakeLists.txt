@@ -37,23 +37,53 @@ target_include_directories(Tutorial PUBLIC
 # TODO 3: Install Tutorial in the bin directory
 # Hint: Use the TARGETS and DESTINATION parameters
 
+install(TARGETS Tutorial DESTINATION bin)
+
 # TODO 4: Install TutorialConfig.h to the include directory
 # Hint: Use the FILES and DESTINATION parameters
 
+install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"
+   DESTINATION include
+   )
+
 # TODO 5: Enable testing
+enable_testing()
 
 # TODO 6: Add a test called Runs which runs the following command:
 # $ Tutorial 25
+
+add_test(Runs Tutorial 25)
 
 # TODO 7: Add a test called Usage which runs the following command:
 # $ Tutorial
 # Make sure the expected output is displayed.
 # Hint: Use the PASS_REGULAR_EXPRESSION property with "Usage.*number"
 
+add_test(Usage Tutorial)
+set_tests_properties(Usage PROPERTIES
+  PASS_REGULAR_EXPRESSION "Usage.*number")
+
 # TODO 8: Add a test which runs the following command:
 # $ Tutorial 4
 # Make sure the result is correct.
 # Hint: Use the PASS_REGULAR_EXPRESSION property with "4 is 2"
+add_test(SquareRootOfFour Tutorial 4
+  PASS_REGULAR_EXPRESSION "4 is 2")
 
 # TODO 9: Add more tests. Create a function called do_test to avoid copy +
 # paste. Test the following values: 4, 9, 5, 7, 25, -25 and 0.0001.
+
+function(do_test input expected)
+  add_test(NAME Comp_${input} COMMAND Tutorial ${input})
+    set_tests_properties(Comp_${input} 
+      PROPERTIES PASS_REGULAR_EXPRESSION ${expected}
+    )
+endfunction()
+
+do_test(4 "4 is 2")
+do_test(9 "9 is 3")
+do_test(5 "5 is 2\..*")
+do_test(7 "7 is 2\..*")
+do_test(25 "25 is 5")
+do_test(-25 "-25 is (-nan|nan|0)")
+do_test(0.0001 "0.0001 is 0.01")

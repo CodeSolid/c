@@ -19,10 +19,13 @@ build: setup
 		&& cmake --build .
 	cd Step4_build && cmake -DCMAKE_BUILD_TYPE=Debug ../Step4 \
 		&& cmake --build .
-	
+	cd Step5_build && cmake ../Step5 \
+		&& ctest -vv \
+		&& cmake --build .
 setup:
 	$(foreach dir,$(dirs), @mkdir -p "${dir}_build" )
 
 clean:
-	$(foreach dir,$(dirs), rm -rf "${dir}_build")
+	$(foreach dir,$(dirs), @rm -rf "${dir}_build")
+	@rm -rf Step5/Testing
 	
