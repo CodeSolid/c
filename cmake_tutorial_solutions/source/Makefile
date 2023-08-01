@@ -1,5 +1,5 @@
 .PHONY: clean build setup Step1 Step2 Step3 Step4 Step5 Step6 \
-	Step7
+	Step7 Step8
 
 dirs = Step1 Step2 Step3 Step4 Step5 Step6 Step6 Step7 Step8 Step9 \
 	Step10 Step11 Step12
@@ -9,13 +9,7 @@ CMAKE_FLAGS = -DCMAKE_BUILD_TYPE=Debug
 BUILD_CMD = $(cd $(dir)_build && cmake $(CMAKE_FLAGS) ../$(dir) && cmake --build .)
 
 
-#	$(foreach dir,$(finished), ${"cd ${dir}_build && cmake ${CMAKE_FLAGS}../${dir} && cmake --build ."})
-
-define std_build =
-
-endef
-
-build:  Step1 Step2 Step3 Step4 Step5 Step6 Step7
+build:  Step1 Step2 Step3 Step4 Step5 Step6 Step7 Step8
 
 Step1 : 
 	mkdir -p Step1_build
@@ -62,8 +56,16 @@ Step7:
 	ctest -vv && \
 	cmake --build .
 
+Step8:
+	mkdir -p Step8_build && \
+	cd Step8_build && \
+	cmake -DCMAKE_BUILD_TYPE=Debug ../Step8 && \
+	cmake --build .
+
+# No longer used at this point
 setup:
 	$(foreach dir,$(dirs), @mkdir -p "${dir}_build" )
+
 
 clean:
 	$(foreach dir,$(dirs), @rm -rf "${dir}_build")
