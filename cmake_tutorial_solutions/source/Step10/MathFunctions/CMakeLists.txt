@@ -8,9 +8,9 @@ target_include_directories(MathFunctions
                            )
 
 # should we use our own math functions
-option(USE_MYMATH "Use tutorial provided math implementation" ON)
-if(USE_MYMATH)
 
+if(USE_MYMATH)
+  
   target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH")
 
   include(MakeTable.cmake) # generates Table.h
@@ -20,12 +20,13 @@ if(USE_MYMATH)
               mysqrt.cxx
               ${CMAKE_CURRENT_BINARY_DIR}/Table.h
               )
-
+  set_target_properties(SqrtLibrary PROPERTIES POSITION_INDEPENDENT_CODE ON)
   # state that we depend on our binary dir to find Table.h
   target_include_directories(SqrtLibrary PRIVATE
                              ${CMAKE_CURRENT_BINARY_DIR}
                              )
 
+  target_compile_definitions(SqrtLibrary PRIVATE "EXPORTING_MYMATH")
   target_link_libraries(SqrtLibrary PUBLIC tutorial_compiler_flags)
   target_link_libraries(MathFunctions PRIVATE SqrtLibrary)
 endif()
