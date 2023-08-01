@@ -1,4 +1,5 @@
-.PHONY: clean build setup
+.PHONY: clean build setup Step1 Step2 Step3 Step4 Step5 Step6 \
+	Step7
 
 dirs = Step1 Step2 Step3 Step4 Step5 Step6 Step6 Step7 Step8 Step9 \
 	Step10 Step11 Step12
@@ -10,18 +11,57 @@ BUILD_CMD = $(cd $(dir)_build && cmake $(CMAKE_FLAGS) ../$(dir) && cmake --build
 
 #	$(foreach dir,$(finished), ${"cd ${dir}_build && cmake ${CMAKE_FLAGS}../${dir} && cmake --build ."})
 
-build: setup 
-	cd Step1_build && cmake  ../Step1 \
-		&& cmake --build .
-	cd Step2_build && cmake -DCMAKE_BUILD_TYPE=Debug ../Step2 \
-		&& cmake --build .
-	cd Step3_build && cmake -DCMAKE_BUILD_TYPE=Debug ../Step3 \
-		&& cmake --build .
-	cd Step4_build && cmake -DCMAKE_BUILD_TYPE=Debug ../Step4 \
-		&& cmake --build .
-	cd Step5_build && cmake ../Step5 \
-		&& ctest -vv \
-		&& cmake --build .
+define std_build =
+
+endef
+
+build:  Step1 Step2 Step3 Step4 Step5 Step6 Step7
+
+Step1 : 
+	mkdir -p Step1_build
+	cd Step1_build && \
+	cmake -DCMAKE_BUILD_TYPE=Debug ../Step1 && \
+	make
+
+Step2:
+	mkdir -p Step2_build
+	cd Step2_build && \
+	cmake -DCMAKE_BUILD_TYPE=Debug ../Step2 && \
+	make
+
+Step3:
+	mkdir -p Step3_build && \
+	cd Step3_build && \
+	cmake -DCMAKE_BUILD_TYPE=Debug ../Step3 && \
+	cmake --build .
+
+Step4:
+	mkdir -p Step4_build && \
+	cd Step4_build && \
+	cmake -DCMAKE_BUILD_TYPE=Debug ../Step4 && \
+	cmake --build .
+
+Step5:
+	mkdir -p Step5_build && \
+	cd Step5_build && \
+	cmake -DCMAKE_BUILD_TYPE=Debug ../Step5 && \
+	ctest -vv && \
+	cmake --build .
+
+Step6: 
+	@mkdir -p Step6_build
+	@cd Step6_build && cmake ../Step6 \
+		&& cmake --build . \
+		&& ctest [-VV] -C Debug -D Experimental \
+		&& echo Go to https://my.cdash.org/index.php?project=CMakeTutorial for results
+
+Step7:
+	mkdir -p Step7_build && \
+	cd Step7_build && \
+	cmake -DCMAKE_BUILD_TYPE=Debug ../Step7 && \
+	ctest -vv && \
+	cmake --build .
+
 setup:
 	$(foreach dir,$(dirs), @mkdir -p "${dir}_build" )
 

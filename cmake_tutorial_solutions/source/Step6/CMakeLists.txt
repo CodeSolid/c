@@ -40,9 +40,9 @@ install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"
   DESTINATION include
   )
 
-# TODO 1: Replace enable_testing() with include(CTest)
-# enable testing
-enable_testing()
+# TODO 1: Replace enable_testing() with include(CTest) DONE
+# enable testing <-- This line is a red herring
+include(CTest)
 
 # does the application run
 add_test(NAME Runs COMMAND Tutorial 25)
