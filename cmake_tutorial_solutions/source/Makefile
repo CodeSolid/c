@@ -1,5 +1,5 @@
 .PHONY: clean build setup Step1 Step2 Step3 Step4 Step5 Step6 \
-	Step7 Step8 Step9 Step10
+	Step7 Step8 Step9 Step10 Step11 Step12
 
 dirs = Step1 Step2 Step3 Step4 Step5 Step6 Step6 Step7 Step8 Step9 \
 	Step10 Step11 Step12
@@ -9,7 +9,7 @@ CMAKE_FLAGS = -DCMAKE_BUILD_TYPE=Debug
 BUILD_CMD = $(cd $(dir)_build && cmake $(CMAKE_FLAGS) ../$(dir) && cmake --build .)
 
 
-build:  Step1 Step2 Step3 Step4 Step5 Step6 Step7 Step8 Step9 Step10
+build:  Step1 Step2 Step3 Step4 Step5 Step6 Step7 Step8 Step9 Step10 Step11 Step12
 
 Step1 : 
 	mkdir -p Step1_build
@@ -74,6 +74,20 @@ Step10:
 	cd Step10_build && \
 	cmake -DCMAKE_BUILD_TYPE=Release ../Step10 && \
 	cmake --build . 
+
+Step11:
+	mkdir -p Step11_build && \
+	cd Step11_build && \
+	cmake -DCMAKE_BUILD_TYPE=Release ../Step11 && \
+	cmake --build . 
+
+Step12:
+	mkdir -p Step12_build && \
+	cd Step12_build && \
+	cmake -DCMAKE_BUILD_TYPE=Release ../Step12 && \
+	cmake --build . 
+
+
 
 # No longer used at this point
 setup:
