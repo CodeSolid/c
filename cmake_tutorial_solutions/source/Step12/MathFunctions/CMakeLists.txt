@@ -37,6 +37,9 @@ if(USE_MYMATH)
   target_link_libraries(MathFunctions PRIVATE SqrtLibrary)
 endif()
 
+set_property(TARGET MathFunctions PROPERTY VERSION "1.0.0")
+set_property(TARGET MathFunctions PROPERTY SOVERSION "1")
+
 target_link_libraries(MathFunctions PUBLIC tutorial_compiler_flags)
 
 # define the symbol stating we are using the declspec(dllexport) when

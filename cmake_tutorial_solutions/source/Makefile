@@ -1,15 +1,13 @@
 .PHONY: clean build setup Step1 Step2 Step3 Step4 Step5 Step6 \
 	Step7 Step8 Step9 Step10 Step11 Step12
 
-dirs = Step1 Step2 Step3 Step4 Step5 Step6 Step6 Step7 Step8 Step9 \
-	Step10 Step11 Step12
 
 finished = Step1 Step2 Step3
 CMAKE_FLAGS = -DCMAKE_BUILD_TYPE=Debug
 BUILD_CMD = $(cd $(dir)_build && cmake $(CMAKE_FLAGS) ../$(dir) && cmake --build .)
 
 
-build:  Step1 Step2 Step3 Step4 Step5 Step6 Step7 Step8 Step9 Step10 Step11 
+build:  Step1 Step2 Step3 Step4 Step5 Step6 Step7 Step8 Step9 Step10 Step11 Step12
 
 Step1 : 
 	mkdir -p Step1_build
@@ -83,19 +81,15 @@ Step11:
 	cmake --build . 
 
 Step12:
-	mkdir -p Step12_build && \
-	cd Step12_build && \
-	cmake -DCMAKE_BUILD_TYPE=Release ../Step12 && \
-	cmake --build . 
+	mkdir -p Step12/debug && mkdir -p Step12/release
+	cd Step12/release && cmake -DCMAKE_BUILD_TYPE=Release .. && cmake --build .
+	cd Step12/debug && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build .
+	cd Step12 && cpack --config MultiCPackConfig.cmake
 
-
-
-# No longer used at this point
-setup:
-	$(foreach dir,$(dirs), @mkdir -p "${dir}_build" )
-
+delete_dirs = Step1_build Step2_build Step3_build Step4_build Step5/Testing Step5_build Step6_build Step6_build Step7_build \
+	Step8_build Step9_build Step10_build Step11_build Step12/debug Step12/release Step12/_CPack_Packages
 
 clean:
-	$(foreach dir,$(dirs), @rm -rf "${dir}_build")
-	@rm -rf Step5/Testing
 	
+	$(foreach dir,$(delete_dirs), @rm -rf "$(dir)")
+	@rm -f Step12/Tutorial-1.0-Linux.*
