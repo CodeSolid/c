@@ -9,7 +9,7 @@ CMAKE_FLAGS = -DCMAKE_BUILD_TYPE=Debug
 BUILD_CMD = $(cd $(dir)_build && cmake $(CMAKE_FLAGS) ../$(dir) && cmake --build .)
 
 
-build:  Step1 Step2 Step3 Step4 Step5 Step6 Step7 Step8 Step9 Step10 Step11 Step12
+build:  Step1 Step2 Step3 Step4 Step5 Step6 Step7 Step8 Step9 Step10 Step11 
 
 Step1 : 
 	mkdir -p Step1_build
@@ -39,8 +39,9 @@ Step5:
 	mkdir -p Step5_build && \
 	cd Step5_build && \
 	cmake -DCMAKE_BUILD_TYPE=Debug ../Step5 && \
-	ctest -vv && \
-	cmake --build .
+	cmake --build . && \
+	ctest -vv
+	
 
 Step6: 
 	@mkdir -p Step6_build
@@ -53,9 +54,9 @@ Step7:
 	mkdir -p Step7_build && \
 	cd Step7_build && \
 	cmake -DCMAKE_BUILD_TYPE=Debug ../Step7 && \
-	ctest -vv && \
-	cmake --build .
-
+	cmake --build . && \
+	ctest -vv
+	
 Step8:
 	mkdir -p Step8_build && \
 	cd Step8_build && \
