@@ -10,7 +10,7 @@ C and C++ tutorials and demos for [CodeSolid.com](https://codesolid.com).
 
 * [gcc_cmake_tutorial](./gcc_cmake_tutorial/) -- Multi-stage build that adds gcc to cmake as in [gcc_with_cmake](./gcc_with_cmake/), then gets the source for the corresponding CMake tutorial into /source.
 
-* [cmake_tutorial_solutions](./cmake_tutorial_solutions/) -- Code to those CMake tutorial sections that I've worked through to date.
+* [cmake_tutorial_solutions](./cmake_tutorial_solutions/) -- Solutions for the latest CMake tutorial.
 
 ## Related CodeSolid articles
 
