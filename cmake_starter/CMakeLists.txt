@@ -3,7 +3,13 @@
 cmake_minimum_required(VERSION 3.24)
 project(Starter VERSION 0.01)
 
-# Test first
-add_executable(tests "")
 
+# Add libraries and executables first, 
+# before add_subdirectory calls
+add_executable(tests "")
+add_library(lib)
+
+# 
+add_subdirectory(lib)
 add_subdirectory(test)
+
