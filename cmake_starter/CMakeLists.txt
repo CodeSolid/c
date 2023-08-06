@@ -6,10 +6,9 @@ project(Starter VERSION 0.01)
 
 # Add libraries and executables first, 
 # before add_subdirectory calls
-add_executable(tests "")
 add_library(lib)
+add_executable(tests "")
 
-# 
 add_subdirectory(lib)
 add_subdirectory(test)
 
