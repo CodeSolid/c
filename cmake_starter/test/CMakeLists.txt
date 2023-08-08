@@ -15,6 +15,5 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Catch2)
 
-target_link_libraries(tests PRIVATE lib)
-
+target_link_libraries(tests PUBLIC lib)
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
