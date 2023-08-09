@@ -16,3 +16,5 @@ C and C++ tutorials and demos for [CodeSolid.com](https://codesolid.com).
 
 The gcc_with_cmake , gcc_cmake_tutorial, and cmake_tutorial_solutions source is discussed in [Running the CMake Tutorial in a VS Code Dev Container](https://codesolid.com/running-the-cmake-tutorial-in-a-vs-code-dev-container/).
 
+The cmake_starter folder contains the code for the article [A CMake Starter Project](https://codesolid.com/cmake-starter-project/).
+
