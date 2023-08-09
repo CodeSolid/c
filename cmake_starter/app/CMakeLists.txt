@@ -1,6 +1,5 @@
 # app/CMakeLists.txt
 
-
 target_sources(factorial
     PRIVATE
         app.cpp
